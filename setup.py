@@ -15,7 +15,7 @@ else:
 
 setup(
     name = "django-live-profiler",
-    version = "0.0.9",
+    version = "0.0.9a",
     author = "Alexander Tereshkin",
     author_email = "atereshkin@invitebox.com",
     description = ("A database access profiler for Django-based applications that can be ran in production "

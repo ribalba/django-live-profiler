@@ -1,5 +1,6 @@
 from datetime import datetime
 
+from django.conf import settings
 from django.db.models.sql.compiler import SQLCompiler
 from django.db.models.sql.datastructures import EmptyResultSet
 from django.db.models.sql.constants import MULTI
@@ -34,7 +35,8 @@ INSTRUMENTED = False
 
 
 
-if not INSTRUMENTED:
+if not INSTRUMENTED and getattr(settings, 'LIVE_PROFILER_SQL_INSTRUMENT',
+                                True):
     SQLCompiler.__execute_sql = SQLCompiler.execute_sql
     SQLCompiler.execute_sql = execute_sql
     INSTRUMENTED = True
