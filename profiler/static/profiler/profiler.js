@@ -255,3 +255,8 @@ function toTree(data, getPath, reduce){
     }
     return tree;
 }
+
+function mapTree(tree, map){
+    tree.children.forEach(function(c) { mapTree(c, map); });
+    map(tree);
+}

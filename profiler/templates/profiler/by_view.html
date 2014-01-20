@@ -28,6 +28,13 @@ function(node, row) {
     }
 
 });
+mapTree(data, function(node) {
+ if(node.children.length == 0) { return; }
+ function arraysum(a) { return a.reduce(function(a,b) {return a+b;}, 0); }
+ node.time = arraysum(node.children.map(function(x) {return x.time;}));
+ node.count = arraysum(node.children.map(function(x) {return x.count;}));
+ node.average_time = node.time / node.count;
+});
 data.x0=0;data.y0=0;
 
 update(root = data, metrics = function(node){ 
