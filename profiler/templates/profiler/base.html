@@ -31,6 +31,8 @@
             <ul class="nav">
               <li><a href="{% url "profiler_global_stats" %}">SQL global</a></li>
               <li><a href="{% url "profiler_stats_by_view" %}">SQL by view</a></li>
+              <li><a href="{% url "profiler_views_stats" %}">Views</a></li>
+              <li><a href="{% url "profiler_urls_stats" %}">Urls</a></li>
               <li><a href="{% url "profiler_python_stats" %}">Python code</a></li>
               <li><a href="{% url "profiler_reset" %}?next={{ request.path }}">Reset</a></li>
             </ul>

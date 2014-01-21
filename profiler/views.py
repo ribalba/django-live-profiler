@@ -18,6 +18,25 @@ def global_stats(request):
                               context_instance=RequestContext(request))
 
 @user_passes_test(lambda u:u.is_superuser)
+def urls_stats(request):
+    stats = get_client().select(group_by=['request_path'], where={'type':'url'})
+    for s in stats:
+        s['average_time'] = s['time'] / s['count']
+    return render_to_response('profiler/urls.html',
+                              {'urls' : stats},
+                              context_instance=RequestContext(request))
+
+@user_passes_test(lambda u:u.is_superuser)
+def views_stats(request):
+    stats = get_client().select(group_by=['code_part'], where={'type':'code'})
+    for s in stats:
+        s['average_time'] = s['time'] / s['count']
+    return render_to_response('profiler/views.html',
+                              {'parts' : stats},
+                              context_instance=RequestContext(request))
+
+
+@user_passes_test(lambda u:u.is_superuser)
 def stats_by_view(request):
     stats = get_client().select(group_by=['view','query'], where={'type':'sql'})
     grouped = {}
