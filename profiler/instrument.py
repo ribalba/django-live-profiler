@@ -29,7 +29,7 @@ def execute_sql(self, *args, **kwargs):
     finally:
         d = (datetime.now() - start)
         client.insert({'query' : q, 'view' : _get_current_view(), 'type' : 'sql'},
-                      {'time' : 0.0 + d.seconds * 1000 + d.microseconds/1000, 'count' : 1})
+                      {'time' : 0.0 + d.seconds * 1000 + float(d.microseconds)/1000, 'count' : 1})
 
 INSTRUMENTED = False
 

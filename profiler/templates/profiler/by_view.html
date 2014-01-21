@@ -41,7 +41,7 @@ update(root = data, metrics = function(node){
 			       if (node===data)
 			       return ['Total time', 'Count', 'Average time'];
 			       else
-			       return [node.time, node.count, Math.round(node.average_time*100)/100];
+			       return [Math.round(node.time*10000)/10000, node.count, Math.round(node.average_time*10000)/10000];
 });
 
 });
